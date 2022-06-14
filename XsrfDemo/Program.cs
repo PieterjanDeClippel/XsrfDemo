@@ -3,8 +3,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<XsrfDemo.Stores.IWeatherForecastStore, XsrfDemo.Stores.WeatherForecastStore>();
 
 var app = builder.Build();
+await app.Services.GetRequiredService<XsrfDemo.Stores.IWeatherForecastStore>().SeedWithRandomForecasts();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

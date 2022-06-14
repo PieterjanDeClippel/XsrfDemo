@@ -1,0 +1,26 @@
+<form class="container" (submit)="createWeatherForecast()">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <h1 class="d-inline-block">Add weather forecast</h1>
+      <button type="submit" class="btn btn-primary float-end">Create</button>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">Date</div>
+    <div class="col-md-6">
+      <input type="date" [ngModel]="forecast.date | date:'yyyy-MM-dd'" (ngModelChange)="updateDate($event)" class="form-control" name="date" />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">Temperature (&deg;C)</div>
+    <div class="col-md-6">
+      <input type="number" [(ngModel)]="forecast.temperatureC" class="form-control" name="temperature" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">Summary</div>
+    <div class="col-md-6">
+      <input type="text" [(ngModel)]="forecast.summary" class="form-control" name="summary" />
+    </div>
+  </div>
+</form>
