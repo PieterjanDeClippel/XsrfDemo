@@ -5,7 +5,9 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 export function getBaseUrl() {
-  return document.getElementsByTagName('base')[0].href.slice(0, -1);
+  let baseUrl = document.getElementsByTagName('base')[0].href.slice(0, -1);
+  baseUrl = baseUrl.replace(/^http[s]{0,1}\:/, '');
+  return baseUrl;
 }
 
 const providers = [

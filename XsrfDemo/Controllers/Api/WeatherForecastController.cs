@@ -28,6 +28,7 @@ namespace XsrfDemo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<WeatherForecast> Create([FromBody] WeatherForecast forecast)
         {
             var newForecast = await weatherForecastStore.CreateForecastAsync(forecast);
@@ -35,6 +36,7 @@ namespace XsrfDemo.Controllers
         }
 
         [HttpPut("{id}")]
+        [ValidateAntiForgeryToken]
         public async Task<WeatherForecast> Update([FromBody] WeatherForecast forecast)
         {
             var updatedForecast = await weatherForecastStore.UpdateForecastAsync(forecast);
@@ -42,6 +44,7 @@ namespace XsrfDemo.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ValidateAntiForgeryToken]
         public async Task Delete(int id)
         {
             await weatherForecastStore.DeleteForecastAsync(id);

@@ -1,8 +1,11 @@
+using MintPlayer.AspNetCore.XsrfForSpas;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 builder.Services.AddSingleton<XsrfDemo.Stores.IWeatherForecastStore, XsrfDemo.Stores.WeatherForecastStore>();
 
 var app = builder.Build();
@@ -16,6 +19,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAntiforgery();
 app.UseStaticFiles();
 app.UseRouting();
 
